@@ -1,15 +1,17 @@
 package com.company;
 
-public class Monster {
+public abstract class Monster {
 
     private String name;
     private int damage;
     private int life;
+    private String type;
 
-    public Monster(String name, int damage, int life) {
+    public Monster(String name, int damage, int life, String type) {
         this.name = name;
         this.damage = damage;
         this.life = life;
+        this.type = type;
     }
 
     public String getName() {
@@ -24,6 +26,10 @@ public class Monster {
         return this.life;
     }
 
+    public String getType() {
+        return this.type;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -36,7 +42,11 @@ public class Monster {
         this.life = life;
     }
 
-    public void takeHit(Monster adversary) {
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int takeHit(Monster adversary) {
         this.life = this.life - adversary.damage;
         if (this.life > 0) {
             System.out.println(this.name + " received " + adversary.damage + " points of damage. " + this.name + " has " + this.life +
@@ -44,5 +54,8 @@ public class Monster {
         } else {
             System.out.println(this.name + " is KO!");
         }
+        return 0;
     }
+
+    public abstract String typeMonster();
 }
